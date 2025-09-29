@@ -13,6 +13,7 @@ def manual_count_occurrences(text: str, pattern: str) -> int:
     if not text or not pattern:
         return 0
     # >>> replace the following with a real manual scan <<<
+
     text = text.lower()
     pattern = pattern.lower()
     count = 0
