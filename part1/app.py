@@ -13,7 +13,13 @@ def manual_count_occurrences(text: str, pattern: str) -> int:
     if not text or not pattern:
         return 0
     # >>> replace the following with a real manual scan <<<
-    return 0
+    text = text.lower()
+    pattern = pattern.lower()
+    count = 0
+    for i in range(len(text) - len(pattern) + 1):
+        if text[i:i + len(pattern)] == pattern:
+            count += 1
+    return count
 
 def print_result(query: str, total: int, title_count: int, line_count: int) -> None:
     print(f"Matches for \"{query}\": {total} (title: {title_count}, lines: {line_count})")
@@ -45,9 +51,13 @@ def main() -> None:
         #  Call your implementation of the function manual_count_occurrences to get the counts in the title and the
         #  lines of the sonnet.
 
-        title_count = 0
-        line_count = 0
+        title = SONNET["title"]
+        lines = SONNET["lines"]
+
+        title_count = manual_count_occurrences(title, raw)
+        line_count = sum(manual_count_occurrences(line, raw) for line in lines)
         total = title_count + line_count
+
         print_result(raw, total, title_count, line_count)
 
 if __name__ == "__main__":
